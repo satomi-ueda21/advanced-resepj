@@ -1,0 +1,126 @@
+html, body, main{
+  height: 100%;
+  font-family: Helvetica , "Meiryo", sans-serif;
+}
+
+.container{
+  background-color: #ebfffa; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  height: 100%;
+}
+
+/* --------------------------------------
+　　　　　　店舗詳細
+----------------------------------------*/
+.detail {
+  margin: 50px 0;
+  width: 45%;
+}
+
+.detail-box{
+  margin: 20px 0;
+}
+
+.detail-back{
+  background: #fff;
+  border:none;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.detail-title{
+  width: 100%;
+  display: inline;
+  font-size: 24px;
+}
+
+.detail-img {
+  display: block;
+  width: 75%;
+  height: auto;
+}
+
+.detail-text {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top:35px;
+}
+
+.detail-note{
+  width: 75%;
+  margin-top: 35px;
+  font-size: 18px;
+}
+
+/* --------------------------------------
+　　　　　　店舗予約
+----------------------------------------*/
+.reseve-info{
+  margin: 50px 0;
+  width: 45%;
+}
+
+.reseve-title{
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.reseve-box{
+  background-color: #3560f6;
+  border-radius: 5px 5px 0 0;
+  width: 75%;
+  height: 90%;
+  padding: 30px;
+}
+
+.reseve-date,
+.reseve-time,
+.reseve-num{
+  display: block;
+  width: 85%;
+  height: 30px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  padding-left: 20px;
+  font-size: 16px;
+}
+
+.reseve-table{
+  color: #fff;
+  background-color: hsl(227, 87%, 65%);
+  width: 90%;
+  border-radius: 5px;
+}
+
+.reseve-table th{
+  padding-top: 10px;
+  text-align: left;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  width: 30%;
+}
+
+.reseve-table td{
+  text-align: left;
+}
+
+.reseve-but{
+  background-color: #1949f8;
+  border-radius: 0 0 5px 5px;
+  width: 82%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  font-size: 16px;
+
+}
+
+.reseve-buta{
+  text-decoration: none;
+}
+
