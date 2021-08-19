@@ -34,22 +34,28 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * favoritesテーブルとリレーション
      */
-    // protected $casts = [
-    //     'email_verified_at' => 'datetime',
-    // ];
+    public function favorite() {
+        return $this->hasMany('App\Models\Favorite');
+    }
+
+    /**
+     * storeテーブルとリレーション
+     */
+    public function store() {
+        return $this->belongsTo('App\Models\Store');
+    }
+
 
     /**
      * Emailがマッチしたユーザーを返す。
      * @param string $email
      * @return object
      */
-    public function getuserByEmail($email)
+    public function getUserByEmail($email)
     {
-        return User::where('emai','=',$email)->first();
+        return User::where('email','=',$email)->first();
     }
 
     /**
@@ -59,7 +65,7 @@ class User extends Authenticatable
      */
     public function isAccountLocked($user)
     {
-        if($user->locked_flg===1){
+        if($user->locked_flg === 1){
             return true;
         }
         return false;
@@ -68,19 +74,19 @@ class User extends Authenticatable
     /**
      * エラーカウントをリセットする
      * @param object $user
-     * @return int
      */
     public function resetErrorCount($user)
     {
-        if($user->error_count >0){
-            $user->error_count=0;
+        if($user->error_count > 0){
+            $user->error_count = 0;
             $user->save();
         }
     }
 
     /**
-     * エラーカウントを加算する
+     * エラーカウントを1加算する
      * @param int $error_count
+     * @return int
      */
     public function addErrorCount($error_count)
     {
@@ -94,9 +100,9 @@ class User extends Authenticatable
      */
     public function lockAccount($user)
     {
-        if($user->error_count>5){
-            $user->locked_flg=1;
-            $user->save();
+        if($user->error_count > 5){
+            $user->locked_flg = 1;
+            return $user->save();
         }
         return false;
     }

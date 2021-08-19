@@ -16,12 +16,12 @@
         <div class="container">
           <div class="user-box">
             <form action="{{route('logout')}}" method="POST">
-            @@csrf
+            @csrf
             <button class="logout-btn">ログアウト</button>
             </form>
-            @if (session('login_success'))
+            @if (session('success'))
                 <div class="alert-success">
-                  {{session('login_success')}}
+                  {{session('success')}}
                 </div>
             @endif
             <h1 class="user-name">{{Auth::user()->name}}さん</h1>

@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Stmt\If_;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -25,7 +24,7 @@ class AuthController extends Controller
         return view('register');
     }
 
-        /**
+    /**
      *  @return View
      */
     public function thanks()
@@ -33,7 +32,7 @@ class AuthController extends Controller
         return view('thanks');
     }
 
-        /**
+    /**
      * @param App\Http\Requests\RegisterFormRequest;
      * $request
      */
@@ -53,7 +52,7 @@ class AuthController extends Controller
     /**
      *  @return View
      */
-    public function showLogin()
+    public function showlogin()
     {
         return view('login');
     }
@@ -64,16 +63,13 @@ class AuthController extends Controller
      */
     public function login(LoginFormRequest $request)
     {
-        $credentials=$request->only('email,password');
-
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        $credentials=$request->only('email','password');
 
             //アカウントがロックされたら弾く
-            $user=$this->user->getuserByEmail($credentials['email']);
+            $user=$this->user->getUserByEmail($credentials['email']);
 
             if (!is_null($user)) {
-                if($this->user->isAccountLock($user)){
+                if($this->user->isAccountLocked($user)){
                     return back()->withErrors([
                     'danger'=>'アカウントがロックされています。',
                 ]);
@@ -84,25 +80,32 @@ class AuthController extends Controller
                     //成功したらエラーカウントを0にする
                     $this->user->resetErrorCount($user);
 
-                    return redirect()->route('mypage')->with('login_success','ログイン済み。マイページを表示します。');
+                    return redirect()->route('mypage')->with('success','ログイン済み。マイページを表示します。');
                 };
                 //ログイン失敗したらエラーカウントを1増やす
                 $user->error_count=$this->user->addErrorCount($user->error_count);
 
                 //エラーカウントが6以上はアカウントをロックする
-                if($user->$this->lockAccou($user)){
+                if($this->user->lockAccount($user)){
                     return back()->withErrors([
                         'danger'=>'アカウントがロックされました。解除したい場合は管理者に連絡してください。',
                     ]);
                 }
                 $user->save();
             };
-        }
 
         return back()->withErrors([
-            'login_error'=>'メールアドレスかパスワードが間違っています。',
+            'danger'=>'メールアドレスかパスワードが間違っています。',
         ]);
     }
+
+        /**
+         *   @return View
+        */
+        public function mypage()
+        {
+            return view('mypage');
+        }
 
         /**
      * ユーザーをアプリケーションからログアウトさせる
@@ -118,6 +121,7 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('showLogin')->with('logout','ログアウトしました。');
+        return redirect()->route('showlogin')->with('danger','ログアウトしました。');
     }
+    
 }

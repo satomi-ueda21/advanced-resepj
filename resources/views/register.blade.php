@@ -28,13 +28,13 @@
                   </div>
                 @endif
               <div class="user-box">
-                <input type="text" class="user-bar" placeholder="Username">
+                <input type="text" class="user-bar" placeholder="Username" name="name">
               </div>
               <div class="mail-box">
-                <input type="email" class="mail-bar" placeholder="Email">
+                <input type="email" class="mail-bar" placeholder="Email" name="email">
               </div>
               <div class="pass-box">
-                <input type="password" class="pass-bar" placeholder="Password">
+                <input type="password" class="pass-bar" placeholder="Password" name="password">
               </div>
               <button class="li-btn" type="submit">登録</button>
             </form>
