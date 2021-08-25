@@ -14,16 +14,20 @@
       <main>
         @section('contents')
         <div class="container">
+          @php
+              // dd($items);
+              // dd($data);
+          @endphp
           <div class="detail">
             <div class="detail-box">
               <button class="detail-back" onclick="location.href='http://127.0.0.1:8000/'"><</button>
-              <h2 class="detail-title">仙人</h2>
+              <h2 class="detail-title">{{$items->name}}</h2>
             </div>
             <div class="detail-info">
-              <img class="detail-img" src="https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg" alt="">
-                <p class="detail-text">＃東京都 ＃寿司</p>
+              <img class="detail-img" src="{{$items->url}}" alt="">
+                <p class="detail-text">＃{{$items->area->name}} ＃{{$items->genre->name}}</p>
               <div class="detail-note">
-                料理長厳選の食材から作る寿司を用いたコースをぜひお楽しみください。食材・味・価格、お客様の満足度を徹底的に追及したお店です。特別な日のお食事、ビジネス接待まで気軽に使用することができます。
+                {{$items->detail}}
               </div>
             </div>
           </div>
@@ -31,39 +35,55 @@
             <div class="reseve-box">
               <h2 class="reseve-title">予約</h2>
               <div class="reseve-group">
-                <input type="date" value="2021-04-01" class="reseve-date">
-                <input type="time" value="17:00" class="reseve-time">
-                <input type="number" list="data1" class="reseve-num">
-                  <datalist id="data1">
-                    <option value="1人"></option>
-                    <option value="2人"></option>
-                    <option value="3人"></option>
-                  </datalist>
+                <form action="{{route('reservation',$data)}}" method="POST">
+                  @csrf
+                  @if($errors->any())
+                    <div style="color:#ffffff;">
+                        【エラー】<br><br>
+                        @foreach ($errors->all() as $error)
+                            {{ $error }}<br>
+                        @endforeach
+                    </div>
+                    <br>
+                  @endif
+                  <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                  <input type="hidden" name="store_id" value="{{ $items->id }}">
+                  <input type="date" class="reseve-date" name="reseve_day" value="<?php echo date('Y-m-d');?>">
+                  <input type="time" placeholder="予約時間" class="reseve-time" name="reseve_time" step="3600" min="09:00" max="21:00">
+                  <input type="number" list="data1" class="reseve-num" name="people" min="1" max="5" placeholder="予約人数">
+                    <datalist id="data1">
+                      <option value="1">
+                      <option value="2">
+                      <option value="3">
+                      <option value="4">
+                      <option value="5">
+                    </datalist>
+                    <table class="reseve-table">
+                      <tr>
+                        <th>Shop</th>
+                        <td>{{$items->name}}</td>
+                      </tr>
+                      <tr>
+                        <th>Date</th>
+                        <td>2021-04-01</td>
+                      </tr>
+                      <tr>
+                        <th>Time</th>
+                        <td>17:00</td>
+                      </tr>
+                      <tr>
+                        <th>Number</th>
+                        <td>1人</td>
+                      </tr>
+                    </table>
+                  </div>
+                  <button type="submit" class="reseve-but">予約する</button>
+                </form>
               </div>
-              <table class="reseve-table">
-                <tr>
-                  <th>Shop</th>
-                  <td>仙人</td>
-                </tr>
-                <tr>
-                  <th>Date</th>
-                  <td>2021-04-01</td>
-                </tr>
-                <tr>
-                  <th>Time</th>
-                  <td>17:00</td>
-                </tr>
-                <tr>
-                  <th>Number</th>
-                  <td>1人</td>
-                </tr>
-              </table>
             </div>
-            <a href="http://127.0.0.1:8000/done" class="reseve-buta"><p class="reseve-but">予約する</p></a>
           </div>
         </div>
-      </div>
-       @endsection
+      @endsection
       </main>
     </x-master>
 </body>

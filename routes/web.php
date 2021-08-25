@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\DetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,16 +40,17 @@ Route::group(['middleware'=>['auth']],function(){
     // お気に入りボタンon off
     Route::get('/fav_on/{store}', [FavoriteController::class,'fav_on'])->name('fav_on');
     Route::get('/fav_off/{store}', [FavoriteController::class,'fav_off'])->name('fav_off');
-    Route::post('/', [FavoriteController::class, 'favorite'])->name('favorite');
+    // Route::post('/', [FavoriteController::class, 'favorite'])->name('favorite');
+
+    //お店の予約
+    Route::post('/detail/{id}', [DetailController::class, 'reservation'])->name('reservation');
 });
 
-Route::get('/detail', function () {
-    return view('detail');
-});
-
+//ホームページ
 Route::get('/', [StoreController::class, 'index'])->name('home');
-
+//お店の詳細ページ
+Route::get('/detail/{id}', [DetailController::class, 'index'])->name('detail');
 
 Route::get('/done', function () {
     return view('done');
-});
+})->name('done');

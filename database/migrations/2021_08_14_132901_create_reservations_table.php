@@ -21,7 +21,7 @@ class CreateReservationsTable extends Migration
             $table->foreign('store_id')->references('id')->on('stores')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->dateTime('reserve_date');
             $table->integer('people')->unsigned();
-            $table->boolean('delete_flag');
+            $table->boolean('delete_flag')->default(0);
             $table->timestamps();
         });
     }
