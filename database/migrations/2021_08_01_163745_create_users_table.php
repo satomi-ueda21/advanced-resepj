@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('locked_flg')->default(0);
             $table->integer('error_count')->unsigned()->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -1,7 +1,21 @@
 <header>
     <div class="header-flex">
         <img class="logo" src="{{asset('img/logo.png')}}" alt="">
-        <h1 class="header-title">Rese</h1>
+        <a href="{{url('/')}}"><h1 class="header-title">Rese</h1></a>
+        @if (Route::has('login'))
+            @auth
+                <form action="{{route('logout')}}" method="POST">
+                @csrf
+                    <button class="logout-btn">ログアウト</button>
+                </form>
+                    <button class="home-btn" onclick="location.href='{{url('/')}}'">ホーム</button>
+        @else
+                <button class="login-btn" onclick="location.href='{{url('/login')}}'">ログイン</button>
+            @if (Route::has('register'))
+                    <button class="register-btn" onclick="location.href='{{url('/register')}}'">会員登録</button>
+            @endif
+            @endauth
+        @endif
     </div>
 </header>
 
@@ -25,4 +39,6 @@
         font-size: 32px;
         margin-left: 30px;
     }
+
+    a{text-decoration: none;}
 </style>

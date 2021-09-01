@@ -45,7 +45,7 @@
               <div class="pass-box">
                 <input type="password" class="pass-bar" name="password" placeholder="Password">
               </div>
-              <button class="li-btn" type="submit">ログイン</button>
+              <button class="li-btn" type="submit" >ログイン</button>
             </form>
           </div>
         </div>

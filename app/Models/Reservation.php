@@ -4,22 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Reservation extends Model
 {
+    use SoftDeletes;
+
     protected $guarded = array('id');
+    protected $dates = ['reserve_date'];
 
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
 
     public function store(){
-        return $this->hasMany('App\Models\Store');
+        return $this->belongsTo('App\Models\Store');
     }
 
-    public function scopeWhereHasReservation($query,$reserve){
 
-        $num = $query->where('reserve_date',$reserve)->get()->count();
-        return $num;
-    }
 }

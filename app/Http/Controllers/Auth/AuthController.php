@@ -79,8 +79,9 @@ class AuthController extends Controller
                     $request->session()->regenerate();
                     //成功したらエラーカウントを0にする
                     $this->user->resetErrorCount($user);
+                    $id = Auth::user()->id;
 
-                    return redirect()->route('mypage')->with('success','ログイン済み。マイページを表示します。');
+                    return redirect()->route('mypage',['id'=>$id])->with('success','ログイン済み。マイページを表示します。');
                 };
                 //ログイン失敗したらエラーカウントを1増やす
                 $user->error_count=$this->user->addErrorCount($user->error_count);
@@ -100,14 +101,6 @@ class AuthController extends Controller
     }
 
         /**
-         *   @return View
-        */
-        public function mypage()
-        {
-            return view('mypage');
-        }
-
-        /**
      * ユーザーをアプリケーションからログアウトさせる
      *
      * @param  \Illuminate\Http\Request $request
@@ -123,5 +116,4 @@ class AuthController extends Controller
 
         return redirect()->route('showlogin')->with('danger','ログアウトしました。');
     }
-    
 }

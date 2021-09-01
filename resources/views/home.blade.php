@@ -9,14 +9,33 @@
   <title>Rese</title>
 </head>
 <body>
-  {{-- <x-master> --}}
+  <x-master />
+  @section('contents')
+  @endsection
     <main>
+      @php
+          // dd($fav);
+      @endphp
       <div class="container">
         <div class="search">
-            <form action="http://www.google.co.jp/search" method="get">
-              <input type="search" name="search" value="All area" class="search-area">
-              <input type="search" name="search" value="All genre" class="search-genre">
-              <input type="search" name="search" placeholder="Search" class="search-key">
+            <form action="{{url('/')}}" method="get">
+              @csrf
+              <select name="area" class="search-area" >
+                <option>All area</option>
+                <option value="13">東京都</option>
+                <option value="27">大阪府</option>
+                <option value="40">福岡県</option>
+              </select>
+              <select name="genre" class="search-genre" >
+                <option>All genre</option>
+                <option value="1">寿司</option>
+                <option value="2">焼肉</option>
+                <option value="3">居酒屋</option>
+                <option value="4">イタリアン</option>
+                <option value="5">ラーメン</option>
+              </select>
+              <input type="search" name="keyword" value="">
+              <input type="submit" class="submit-btn" >
             </form>
         </div>
         <div class="favorite">
@@ -29,17 +48,17 @@
               </div>
               <div class="card-link">
                 <button class="shop-detail" onclick="location.href='http://127.0.0.1:8000/detail/{{$item->id}}'">詳しくみる</button>
-                {{-- @if ($fav_model->fav_exist(Auth::user()->id,$store_id))
-                  <a href="{{route('fav_off',['id'=>$items->id])}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
+
+                @if ($fav)
+                  <a href="{{route('fav_off',$store)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
                 @else
-                  <a href="{{route('fav_on',['id'=>$items->id])}}"><img src="{{asset('img/heart-gray.png')}}" alt="お気に入り追加" class="heart"></a>
-                @endif --}}
+                  <a href="{{route('fav_on',$store)}}"><img src="{{asset('img/heart-gray.png')}}" alt="お気に入り追加" class="heart"></a>
+                @endif
               </div>
             </div>
             @endforeach
           </div>
       </div>
     </main>
-  {{-- </x-master> --}}
 </body>
 </html>

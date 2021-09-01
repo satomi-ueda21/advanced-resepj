@@ -20,6 +20,7 @@ class CreateFavoritesTable extends Migration
             $table->integer('store_id')->unsigned();
             $table->foreign('store_id')->references('id')->on('stores')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

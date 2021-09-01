@@ -14,10 +14,6 @@
       <main>
         @section('contents')
         <div class="container">
-          @php
-              // dd($items);
-              // dd($data);
-          @endphp
           <div class="detail">
             <div class="detail-box">
               <button class="detail-back" onclick="location.href='http://127.0.0.1:8000/'"><</button>
@@ -46,7 +42,9 @@
                     </div>
                     <br>
                   @endif
+                  @auth
                   <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                  @endauth
                   <input type="hidden" name="store_id" value="{{ $items->id }}">
                   <input type="date" class="reseve-date" name="reseve_day" value="<?php echo date('Y-m-d');?>">
                   <input type="time" placeholder="予約時間" class="reseve-time" name="reseve_time" step="3600" min="09:00" max="21:00">
@@ -77,7 +75,13 @@
                       </tr>
                     </table>
                   </div>
-                  <button type="submit" class="reseve-but">予約する</button>
+                  @if (Route::has('login'))
+                    @auth
+                      <button type="submit" class="reseve-but">予約する</button>
+                  @else
+                      <button class="reseve-but" onclick="location.href='http://127.0.0.1:8000/login'">予約する</button>
+                  @endauth
+                  @endif
                 </form>
               </div>
             </div>

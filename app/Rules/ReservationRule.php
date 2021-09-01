@@ -4,13 +4,15 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use App\Models\Reservation;
+use phpDocumentor\Reflection\Types\Void_;
 
 class ReservationRule implements Rule
 {
     private $_user_id,
             $_store_id,
             $_reserve_date,
-            $_people;
+            $_people,
+            $error_message = ''; // エラーメッセージを可変にするためのメンバ変数;
 
     /**
      * Create a new rule instance.
@@ -34,14 +36,24 @@ class ReservationRule implements Rule
      */
     public function passes($attribute, $value)
     {
+        //同じユーザーが同じ店で同じ時間に予約していなか確認
+        $duplicate = Reservation::where('user_id',$this->_user_id)
+                    ->where('store_id',$this->_store_id)
+                    ->where('reserve_date',$this->_reserve_date)->first();
+        if(!empty($duplicate)){
+            $this->error_message ='すでに予約済みです。';
+            return false;
+        }
+
+        //同じ時間帯に予約が指定回数以上入っていないか確認
         $num = Reservation::where('store_id',$this->_store_id)
                 ->where('reserve_date',$this->_reserve_date)->get()->count();
-                        // -> WhereHasReservation($this->_reserve_date);
 
         if($num <= 3)
         {
             return true;
         }else{
+            $this->error_message ='予約が埋まっております。他のお時間を指定してください。';
             return false;
         }
 
@@ -54,6 +66,7 @@ class ReservationRule implements Rule
      */
     public function message()
     {
-        return '予約が埋まっております。他のお時間を指定してください。';
+        // return '予約が埋まっております。他のお時間を指定してください。';
+        return $this->error_message;
     }
 }

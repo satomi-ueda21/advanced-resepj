@@ -25,6 +25,11 @@ html, body, main{
   width: 100px;
 }
 
+.search-area:first-child,
+.search-genre :first-child{
+  display: none;
+}
+
 .search-key{
   height: 30px;
 }

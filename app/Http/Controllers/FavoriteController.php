@@ -28,11 +28,4 @@ class FavoriteController extends Controller
         return back();
     }
 
-        public function favorite(Request $request)
-    {
-        $id = Auth::user()->id;
-        $store_id = $request-> store_id;
-
-        return view('home',['id'=>$id,'store_id'=>$store_id]);
-    }
 }

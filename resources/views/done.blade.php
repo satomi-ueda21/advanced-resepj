@@ -15,7 +15,7 @@
         <div class="container">
           <div class="card">
             <p class="title">ご予約ありがとうございます</p>
-            <button class="li-btn">戻る</button>
+            <button class="li-btn" onclick="location.href='{{url('/')}}'">戻る</button>
           </div>
         </div>
         @endsection

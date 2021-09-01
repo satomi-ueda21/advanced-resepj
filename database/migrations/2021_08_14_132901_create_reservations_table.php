@@ -23,6 +23,7 @@ class CreateReservationsTable extends Migration
             $table->integer('people')->unsigned();
             $table->boolean('delete_flag')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

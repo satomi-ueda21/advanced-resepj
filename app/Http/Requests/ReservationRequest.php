@@ -37,15 +37,13 @@ class ReservationRequest extends FormRequest
             'reserve_day'=>'date|after:today',
             'reserve_time'=>'date_format:H:i',
             'people'=>'integer|min:1|max:5',
-            'reserve_date'=>'after:now',
-            'reseve_date'=>[
+            'reserve_date'=>['after:now',
                 new ReservationRule(
                     $this->user_id,
                     $this->store_id,
                     $this->reserve_date,
                     $this->people
-                )
-            ]
+                )]
         ];
     }
 }

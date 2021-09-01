@@ -12,46 +12,47 @@
 <body>
   <x-master>
       <main>
+          @php
+              // dd($reserve);
+              // dd($data);
+          @endphp
         @section('contents')
         <div class="container">
           <div class="user-box">
-            <form action="{{route('logout')}}" method="POST">
-            @csrf
-            <button class="logout-btn">ログアウト</button>
-            </form>
-            @if (session('success'))
-                <div class="alert-success">
-                  {{session('success')}}
-                </div>
-            @endif
             <h1 class="user-name">{{Auth::user()->name}}さん</h1>
           </div>
           <div class="reseve-info">
             <h2 class="reseve-title">予約状況</h2>
+            @foreach ($reserve as $key=>$item)
             <div class="reseve-box">
               <div class="table-title">
-                <p class="reseve-num">予約1</p>
-                <button class="deleat-btn">×</button>
+                <p class="reseve-num">予約{{$key+1}}</p>
+                <form action="{{route('reserve_delete',$item->id)}}" method="POST">
+                  @csrf
+                  @method('delete')
+                  <button class="deleat-btn" onclick="return confirm('予約をキャンセルしますか？')">×</button>
+                </form>
               </div>
               <table class="reseve-table">
                 <tr>
                   <th>Shop</th>
-                  <td>仙人</td>
+                  <td>{{$item->store->name}}</td>
                 </tr>
                 <tr>
                   <th>Date</th>
-                  <td>2021-04-01</td>
+                  <td>{{$item->reserve_date->format('Y年m月d日')}}</td>
                 </tr>
                 <tr>
                   <th>Time</th>
-                  <td>17:00</td>
+                  <td>{{$item->reserve_date->format('H時i分')}}</td>
                 </tr>
                 <tr>
                   <th>Number</th>
-                  <td>1人</td>
+                  <td>{{$item->people}}人</td>
                 </tr>
               </table>
             </div>
+            @endforeach
           </div>
           <div class="favorite">
             <h2 class="favorite-title">お気に入り店舗</h2>
