@@ -14,7 +14,8 @@
   @endsection
     <main>
       @php
-          // dd($fav);
+          // dd($items);
+          // dd($favorites);
       @endphp
       <div class="container">
         <div class="search">
@@ -47,12 +48,12 @@
                 <p class="card-text">＃{{$item->area->name}} ＃{{$item->genre->name}}</p>
               </div>
               <div class="card-link">
-                <button class="shop-detail" onclick="location.href='http://127.0.0.1:8000/detail/{{$item->id}}'">詳しくみる</button>
+                <button class="shop-detail" onclick="location.href='{{url('/detail/$item->id')}}'">詳しくみる</button>
 
-                @if ($fav)
-                  <a href="{{route('fav_off',$store)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
+                @if ($favorites[$loop->iteration]==1)
+                  <a href="{{route('fav_off',$item->id)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
                 @else
-                  <a href="{{route('fav_on',$store)}}"><img src="{{asset('img/heart-gray.png')}}" alt="お気に入り追加" class="heart"></a>
+                  <a href="{{route('fav_on',$item->id)}}"><img src="{{asset('img/heart-gray.png')}}" alt="お気に入り追加" class="heart"></a>
                 @endif
               </div>
             </div>
