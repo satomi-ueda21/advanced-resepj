@@ -18,9 +18,7 @@ class StoreController extends Controller
     {
         //ストア情報と検索結果表示用
         $query = Store::query();
-        // dump($query);
 
-        // $key = $request->only(['area','genre','keyword']);
         $area = $request->input('area');
         $genre = $request->input('genre');
         $keyword = $request->input('keyword');
@@ -37,13 +35,25 @@ class StoreController extends Controller
             $query->where('name','like','%'.$keyword.'%');
         }
         $items = $query->get();
-                // dump($query);
 
         //お気に入り表示用
-        $fav = Favorite::where('store_id',$store->id)
-        ->where('user_id',auth()->user()?->id)->first();
+        $favorites = array();
+        $favorites[0] = 'dummy';
+        $user = Auth::id();
 
-        return view('home',compact('items','fav'));
+        foreach($items as $item)
+        {
+            $fav = Favorite::where('user_id',$user)->where('store_id',$item['id'])->first();
+            if(!empty($fav))
+            {
+                $fav = 1;
+            }else{
+                $fav = 0;
+            }
+            array_push($favorites,$fav);
+        }
+
+        return view('home',compact('items','favorites'));
     }
 
 }

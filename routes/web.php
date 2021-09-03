@@ -39,9 +39,8 @@ Route::group(['middleware'=>['auth']],function(){
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
     // お気に入りボタンon off
-    Route::get('/fav_on/{store}', [FavoriteController::class,'fav_on'])->name('fav_on');
-    Route::get('/fav_off/{store}', [FavoriteController::class,'fav_off'])->name('fav_off');
-    // Route::post('/', [FavoriteController::class, 'favorite'])->name('favorite');
+    Route::get('/fav_on/{id}', [FavoriteController::class,'fav_on'])->name('fav_on');
+    Route::get('/fav_off/{id}', [FavoriteController::class,'fav_off'])->name('fav_off');
 
     //お店の予約
     Route::post('/detail/{id}', [DetailController::class, 'reservation'])->name('reservation');

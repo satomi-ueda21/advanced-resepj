@@ -10,21 +10,21 @@ use Illuminate\Support\Facades\Auth;
 class FavoriteController extends Controller
 {
     //お気に入りに追加
-    public function fav_on(Store $store, Request $request)
+    public function fav_on($id,Store $store)
     {
         $fav = New Favorite();
-        $fav->store_id = $store->id;
-        $fav->user_id = Auth::user()->id;
+        $fav->store_id = $id;
+        $fav->user_id = Auth::id();
         $fav->save();
         return back();
     }
 
     //お気に入りを削除
-    public function fav_off(Store $store, Request $request)
+    public function fav_off($id,Store $store)
     {
-        $user=Auth::user()->id;
-        $fav=Favorite::where('store_id',$store->id)->where('user_id',$user)->first();
-        $fav->delete();
+        $user=Auth::id();
+        $fav=Favorite::where('store_id',$id)->where('user_id',$user)->first();
+        $fav->forceDelete();
         return back();
     }
 
