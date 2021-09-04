@@ -4,8 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  @if (app('env')=='production')
   <link rel="stylesheet" href="{{secure_asset('css/reset.css')}}">
   <link rel="stylesheet" href="{{secure_asset('css/home.css')}}">
+  @else
+  <link rel="stylesheet" href="{{asset('css/reset.css')}}">
+  <link rel="stylesheet" href="{{asset('css/home.css')}}">
+  @endif
   <title>Rese</title>
 </head>
 <body>
@@ -48,7 +53,7 @@
                 <p class="card-text">＃{{$item->area->name}} ＃{{$item->genre->name}}</p>
               </div>
               <div class="card-link">
-                <button class="shop-detail" onclick="location.href='{{url('/detail/$item->id')}}'">詳しくみる</button>
+                <button class="shop-detail" onclick="location.href='{{route('detail',$item->id)}}'">詳しくみる</button>
 
                 @if ($favorites[$loop->iteration]==1)
                   <a href="{{route('fav_off',$item->id)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
