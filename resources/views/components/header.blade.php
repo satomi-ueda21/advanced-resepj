@@ -1,6 +1,11 @@
 <head>
+    @if (app('env')=='production')
+    <link rel="stylesheet" href="{{secure_asset('css/reset.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/header.css')}}">
+    @else
     <link rel="stylesheet" href="{{asset('css/reset.css')}}">
     <link rel="stylesheet" href="{{asset('css/header.css')}}">
+    @endif
 </head>
 <header>
     <div class="header-flex">
