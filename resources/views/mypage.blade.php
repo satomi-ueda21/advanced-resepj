@@ -13,8 +13,8 @@
   <x-master>
       <main>
           @php
-              // dd($reserve);
-              // dd($data);
+              // dd($reserve_new);
+              // dd($store);
           @endphp
         @section('contents')
         <div class="container">
@@ -22,62 +22,93 @@
             <h1 class="user-name">{{Auth::user()->name}}さん</h1>
           </div>
           <div class="reseve-info">
-            <h2 class="reseve-title">予約状況</h2>
-            @foreach ($reserve as $key=>$item)
-            <div class="reseve-box">
-              <div class="table-title">
-                <p class="reseve-num">予約{{$key+1}}</p>
-                <form action="{{route('reserve_delete',$item->id)}}" method="POST">
-                  @csrf
-                  @method('delete')
-                  <button class="deleat-btn" onclick="return confirm('予約をキャンセルしますか？')">×</button>
-                </form>
-              </div>
-              <table class="reseve-table">
-                <tr>
-                  <th>Shop</th>
-                  <td>{{$item->store->name}}</td>
-                </tr>
-                <tr>
-                  <th>Date</th>
-                  <td>{{$item->reserve_date->format('Y年m月d日')}}</td>
-                </tr>
-                <tr>
-                  <th>Time</th>
-                  <td>{{$item->reserve_date->format('H時i分')}}</td>
-                </tr>
-                <tr>
-                  <th>Number</th>
-                  <td>{{$item->people}}人</td>
-                </tr>
-              </table>
+            <div class="reseve-now">
+              <h2 class="reseve-title">予約状況</h2>
+                @foreach ($reserve_new as $key=>$item)
+                <div class="reseve-box">
+                  <div class="table-title">
+                    <p class="reseve-num">予約{{$key+1}}</p>
+                    <form action="{{route('reserve_delete')}}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <input type="hidden" name="id" value="{{ $item->id }}">
+                      <button class="deleat-btn" onclick="return confirm('予約をキャンセルしますか？')">×</button>
+                    </form>
+                  </div>
+                  <table class="reseve-table">
+                    <tr>
+                      <th>Shop</th>
+                      <td>{{$item->store->name}}</td>
+                    </tr>
+                    <tr>
+                      <th>Date</th>
+                      <td>{{$item->reserve_date->format('Y年m月d日')}}</td>
+                    </tr>
+                    <tr>
+                      <th>Time</th>
+                      <td>{{$item->reserve_date->format('H時i分')}}</td>
+                    </tr>
+                    <tr>
+                      <th>Number</th>
+                      <td>{{$item->people}}人</td>
+                    </tr>
+                  </table>
+                </div>
+                @endforeach
             </div>
-            @endforeach
+            <div class="reseve-old">
+              <h2 class="reseve-title">終了した予約</h2>
+                @foreach ($reserve_old as $key=>$old)
+                <div class="reseve-box">
+                  <div class="table-title">
+                    <p class="reseve-num">予約{{$key+1}}</p>
+                    <form action="{{route('reserve_delete')}}" method="POST">
+                      @csrf
+                      @method('delete')
+                      <input type="hidden" name="id" value="{{ $old->id }}">
+                      <button class="deleat-btn" onclick="return confirm('予約をキャンセルしますか？')">×</button>
+                    </form>
+                  </div>
+                  <table class="reseve-table">
+                    <tr>
+                      <th>Shop</th>
+                      <td>{{$old->store->name}}</td>
+                    </tr>
+                    <tr>
+                      <th>Date</th>
+                      <td>{{$old->reserve_date->format('Y年m月d日')}}</td>
+                    </tr>
+                    <tr>
+                      <th>Time</th>
+                      <td>{{$old->reserve_date->format('H時i分')}}</td>
+                    </tr>
+                    <tr>
+                      <th>Number</th>
+                      <td>{{$old->people}}人</td>
+                    </tr>
+                  </table>
+                </div>
+                @endforeach
+            </div>
           </div>
+
           <div class="favorite">
             <h2 class="favorite-title">お気に入り店舗</h2>
+            @foreach ($favorite as $like)
             <div class="card">
-              <img class="card-img" src="https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg" alt="">
+              <img class="card-img" src="{{$like->store->url}}" alt="">
               <div class="card-content">
-                <p class="card-title">仙人</p>
-                <p class="card-text">＃東京都 ＃寿司</p>
+                <p class="card-title">{{$store[$loop->iteration]->name}}</p>
+                <p class="card-text">＃{{$store[$loop->iteration]->area->name}} ＃{{$store[$loop->iteration]->genre->name}}</p>
               </div>
               <div class="card-link">
-                <button class="shop-detail" onclick="location.href='http://127.0.0.1:8000/detail'">詳しくみる</button>
-                <button class="favorite-btn">♡</button>
+                <button class="shop-detail" onclick="location.href='{{route('detail',$like->id)}}'">詳しくみる</button>
+                <div class="fav-button">
+                    <a href="{{route('fav_off',$like->store_id)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
+                </div>
               </div>
             </div>
-            <div class="card">
-              <img class="card-img" src="https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/yakiniku.jpg" alt="">
-              <div class="card-content">
-                <p class="card-title">牛助</p>
-                <p class="card-text">＃大阪府 ＃焼き肉</p>
-              </div>
-              <div class="card-link">
-                <button class="shop-detail">詳しくみる</button>
-                <button class="favorite-btn">♡</button>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </div>

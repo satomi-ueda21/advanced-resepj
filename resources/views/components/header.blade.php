@@ -1,25 +1,34 @@
+<head>
+    <link rel="stylesheet" href="{{asset('css/reset.css')}}">
+    <link rel="stylesheet" href="{{asset('css/header.css')}}">
+</head>
 <header>
     <div class="header-flex">
-        <img class="logo" src="{{asset('img/logo.png')}}" alt="">
-        <a href="{{url('/')}}"><h1 class="header-title">Rese</h1></a>
-        @if (Route::has('login'))
-            @auth
-                <form action="{{route('logout')}}" method="POST">
-                @csrf
-                    <button class="logout-btn">ログアウト</button>
-                </form>
-                    <button class="home-btn" onclick="location.href='{{url('/')}}'">ホーム</button>
-        @else
-                <button class="login-btn" onclick="location.href='{{url('/login')}}'">ログイン</button>
-            @if (Route::has('register'))
-                    <button class="register-btn" onclick="location.href='{{url('/register')}}'">会員登録</button>
+        <div class="header-left">
+            <a href="{{url('/')}}"><img class="logo" src="{{asset('img/logo.png')}}" alt=""></a>
+            <a href="{{url('/')}}"><h1 class="header-title">Rese</h1></a>
+        </div>
+        <div class="header-right">
+            <a href="{{url('/')}}"><img class="home-btn" src="{{asset('img/house1.png')}}" alt=""></a>
+            @if (Route::has('login'))
+                @auth
+                    <button class="mypage-btn" onclick="location.href='{{url('/mypage')}}'">マイページ</button>
+                    <form action="{{route('logout')}}" method="POST">
+                    @csrf
+                        <button class="logout-btn">ログアウト</button>
+                    </form>
+            @else
+                    <button class="login-btn" onclick="location.href='{{url('/login')}}'">ログイン</button>
+                @if (Route::has('register'))
+                        <button class="register-btn" onclick="location.href='{{url('/register')}}'">会員登録</button>
+                @endif
+                @endauth
             @endif
-            @endauth
-        @endif
+        </div>
     </div>
 </header>
 
-<style>
+{{-- <style>
     .header-flex{
         display: flex;
         height: 55px;
@@ -41,4 +50,4 @@
     }
 
     a{text-decoration: none;}
-</style>
+</style> --}}

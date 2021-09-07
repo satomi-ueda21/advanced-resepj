@@ -17,6 +17,9 @@
 <body>
   <x-master>
       <main>
+        @php
+            // dd($reserve);
+        @endphp
         @section('contents')
         <div class="container">
           <div class="detail">
@@ -61,24 +64,30 @@
                       <option value="4">
                       <option value="5">
                     </datalist>
-                    <table class="reseve-table">
-                      <tr>
-                        <th>Shop</th>
-                        <td>{{$items->name}}</td>
-                      </tr>
-                      <tr>
-                        <th>Date</th>
-                        <td>2021-04-01</td>
-                      </tr>
-                      <tr>
-                        <th>Time</th>
-                        <td>17:00</td>
-                      </tr>
-                      <tr>
-                        <th>Number</th>
-                        <td>1人</td>
-                      </tr>
-                    </table>
+                    @if (Route::has('login'))
+                      @auth
+                      @foreach ($reserve as $book)
+                        <table class="reseve-table">
+                          <tr>
+                            <th>Shop</th>
+                            <td>{{$book->store->name}}</td>
+                          </tr>
+                          <tr>
+                            <th>Date</th>
+                            <td>{{$book->reserve_date->format('Y年m月d日')}}</td>
+                          </tr>
+                          <tr>
+                            <th>Time</th>
+                            <td>{{$book->reserve_date->format('H時i分')}}</td>
+                          </tr>
+                          <tr>
+                            <th>Number</th>
+                            <td>{{$book->people}}人</td>
+                          </tr>
+                        </table>
+                      @endforeach
+                      @endauth
+                    @endif
                   </div>
                   @if (Route::has('login'))
                     @auth

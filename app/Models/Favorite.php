@@ -27,12 +27,5 @@ class Favorite extends Model
         // Favoriteテーブルのレコードにid, $store_idが一致するものを取得
         $exist = Favorite::where('user_id', '=', $id)->where('store_id', '=', $store_id)->get();
 
-        // // レコード（$exist）が存在するなら
-        // if (!$exist->isEmpty()) {
-        //     return true;
-        // } else {
-        // // レコード（$exist）が存在しないなら
-        //     return false;
-        // }
     }
 }

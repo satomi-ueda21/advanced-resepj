@@ -60,7 +60,7 @@ html, body, main{
 ----------------------------------------*/
 .reseve-info{
   margin: 50px 0;
-  width: 45%;
+  width: 40%;
 }
 
 .reseve-title{
@@ -72,15 +72,16 @@ html, body, main{
   background-color: #3560f6;
   border-radius: 5px 5px 0 0;
   width: 75%;
-  height: 90%;
-  padding: 30px;
+  height: 100%;
+  padding: 6%;
+  position: relative;
 }
 
 .reseve-date,
 .reseve-time,
 .reseve-num{
   display: block;
-  width: 85%;
+  width: 90%;
   height: 30px;
   margin-bottom: 20px;
   border-radius: 5px;
@@ -94,6 +95,7 @@ html, body, main{
   background-color: hsl(227, 87%, 65%);
   width: 90%;
   border-radius: 5px;
+  margin-bottom: 2%;
 }
 
 .reseve-table th{
@@ -110,14 +112,14 @@ html, body, main{
 
 .reseve-but{
   background-color: #1949f8;
-  border-radius: 0 0 5px 5px;
-  width: 82%;
-  height: 50px;
+  border-radius: 10px;
+  width: 85%;
   text-align: center;
   line-height: 50px;
   color: #fff;
   font-size: 16px;
-
+  position: absolute;
+  bottom: 3%;
 }
 
 .reseve-buta{

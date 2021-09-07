@@ -21,6 +21,7 @@
       @php
           // dd($items);
           // dd($favorites);
+          // dd($fav_counts);
       @endphp
       <div class="container">
         <div class="search">
@@ -41,7 +42,7 @@
                 <option value="5">ラーメン</option>
               </select>
               <input type="search" name="keyword" value="">
-              <input type="submit" class="submit-btn" >
+              <input type="submit" class="submit-btn" value="検索">
             </form>
         </div>
         <div class="favorite">
@@ -54,12 +55,14 @@
               </div>
               <div class="card-link">
                 <button class="shop-detail" onclick="location.href='{{route('detail',$item->id)}}'">詳しくみる</button>
-
-                @if ($favorites[$loop->iteration]==1)
-                  <a href="{{route('fav_off',$item->id)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
-                @else
-                  <a href="{{route('fav_on',$item->id)}}"><img src="{{asset('img/heart-gray.png')}}" alt="お気に入り追加" class="heart"></a>
-                @endif
+                <div class="fav-button">
+                  @if ($favorites[$loop->iteration]==1)
+                    <a href="{{route('fav_off',$item->id)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
+                  @else
+                    <a href="{{route('fav_on',$item->id)}}"><img src="{{asset('img/heart-gray.png')}}" alt="お気に入り追加" class="heart"></a>
+                  @endif
+                  <em class="fav-count">{{$fav_counts[$loop->iteration]}}</em>
+                </div>
               </div>
             </div>
             @endforeach

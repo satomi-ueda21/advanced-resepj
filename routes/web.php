@@ -34,7 +34,7 @@ Route::group(['middleware'=>['guest']],function(){
 //登録ユーザーの操作
 Route::group(['middleware'=>['auth']],function(){
     //ユーザーのマイページを表示
-    Route::get('/mypage/{id}', [MypageController::class,'index'])->name('mypage');
+    Route::get('/mypage', [MypageController::class,'index'])->name('mypage');
     //ログアウト
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
@@ -45,7 +45,7 @@ Route::group(['middleware'=>['auth']],function(){
     //お店の予約
     Route::post('/detail/{id}', [DetailController::class, 'reservation'])->name('reservation');
     //お店の予約キャンセル
-    Route::delete('mypage/{id}',[MypageController::class,'reserve_delete'])->name('reserve_delete');
+    Route::delete('mypage',[MypageController::class,'reserve_delete'])->name('reserve_delete');
 });
 
 //ホームページ
