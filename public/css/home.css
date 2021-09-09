@@ -4,7 +4,7 @@ html, body, main{
 }
 
 .container{
-  background-color: #ebfffa; 
+  background-color: #ebfffa;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -16,13 +16,19 @@ html, body, main{
   height: auto;
   width: 80%;
   margin-top: 15px;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .search-area,
 .search-genre{
   height: 30px;
   width: 100px;
+  background: #ccddf5;
+  border: none;
+  border-right: solid 1px #4ea6fd;
+  display: inline-block;
+  margin: 0;
 }
 
 .search-area:first-child,
@@ -30,8 +36,29 @@ html, body, main{
   display: none;
 }
 
-.search-key{
+.search-box{
+  background: #ccddf5;
+  border: none;
   height: 30px;
+  display: inline-block;
+  margin: 0;
+}
+
+.search-box:focus{
+  outline: 0;
+}
+
+.submit-btn{
+  cursor: pointer;
+  font-family: FontAwesome;
+  border: none;
+  background: #7fbfff;
+  color: #fff;
+  outline : none;
+  width: 3.0em;
+  height: 30px;
+  display: inline-block;
+  margin: 0;
 }
 /* --------------------------------------
 　　　　　　店舗一覧

@@ -24,7 +24,7 @@
         <div class="container">
           <div class="detail">
             <div class="detail-box">
-              <button class="detail-back" onclick="location.href='{{url('/')}}'"><</button>
+              <button type="button" class="detail-back" onclick="history.back()"><</button>
               <h2 class="detail-title">{{$items->name}}</h2>
             </div>
             <div class="detail-info">
