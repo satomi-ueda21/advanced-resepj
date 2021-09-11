@@ -142,3 +142,27 @@ html, body, main{
   margin-top: 30%;
 }
 
+@media screen and (max-width: 768px){
+
+.search{
+  text-align: center;
+}
+
+.search-area,
+.search-genre{
+  width: 41%;
+}
+
+.search-box{
+  width: 70%;
+  border-top: solid 1px #4ea6fd;
+}
+.favorite{
+justify-content: center;
+}
+
+.card {
+  width: 85%;
+}
+
+}
