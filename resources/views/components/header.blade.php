@@ -12,7 +12,7 @@
 <header>
     <div class="header-flex">
         <div class="header-left">
-            <a href="{{url('/')}}"><img class="logo" src="{{asset('img/logo.png')}}" alt=""></a>
+            <a href="{{url('/')}}"><img class="logo image is-inline-block" src="{{asset('img/logo.png')}}" alt=""></a>
             <a href="{{url('/')}}"><h1 class="header-title">Rese</h1></a>
         </div>
         <div class="header-right">

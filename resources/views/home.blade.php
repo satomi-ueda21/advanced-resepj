@@ -24,7 +24,7 @@
           // dd($favorites);
           // dd($fav_counts);
       @endphp
-      <div class="container">
+      <div class="contain">
         <div class="search">
             <form action="{{url('/')}}" method="get">
               @csrf
@@ -50,17 +50,17 @@
             @foreach ($items as $item)
             <div class="card">
               <img class="card-img" src="{{$item->url}}" alt="">
-              <div class="card-content">
+              <div class="card-contents">
                 <p class="card-title">{{$item->name}}</p>
                 <p class="card-text">＃{{$item->area->name}} ＃{{$item->genre->name}}</p>
               </div>
               <div class="card-link">
-                <button class="shop-detail" onclick="location.href='{{route('detail',$item->id)}}'">詳しくみる</button>
+                <button class="shop-detail button is-info" onclick="location.href='{{route('detail',$item->id)}}'">詳しくみる</button>
                 <div class="fav-button">
                   @if ($favorites[$loop->iteration]==1)
-                    <a href="{{route('fav_off',$item->id)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
+                    <a href="{{route('fav_off',$item->id)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart image is-inline-block"></a>
                   @else
-                    <a href="{{route('fav_on',$item->id)}}"><img src="{{asset('img/heart-gray.png')}}" alt="お気に入り追加" class="heart"></a>
+                    <a href="{{route('fav_on',$item->id)}}"><img src="{{asset('img/heart-gray.png')}}" alt="お気に入り追加" class="heart image is-inline-block"></a>
                   @endif
                   <em class="fav-count">{{$fav_counts[$loop->iteration]}}</em>
                 </div>

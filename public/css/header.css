@@ -64,12 +64,16 @@ a{text-decoration: none;}
       background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
     }
 
-/* @media screen and (max-width: 768px){
+@media screen and (max-width: 375px){
 
-  .header-flex{
-    height: auto;
+  .header-left{
+    padding: 0%;
   }
 
-} */
+  .header-right{
+    padding: 0%;
+  }
+
+}
 
 
