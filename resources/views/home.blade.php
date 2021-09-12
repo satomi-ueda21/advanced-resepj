@@ -6,10 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
   @if (app('env')=='production')
-  <link rel="stylesheet" href="{{secure_asset('css/reset.css')}}">
+  {{-- <link rel="stylesheet" href="{{secure_asset('css/reset.css')}}"> --}}
   <link rel="stylesheet" href="{{secure_asset('css/home.css')}}">
   @else
-  <link rel="stylesheet" href="{{asset('css/reset.css')}}">
+  {{-- <link rel="stylesheet" href="{{asset('css/reset.css')}}"> --}}
   <link rel="stylesheet" href="{{asset('css/home.css')}}">
   @endif
   <title>Rese</title>

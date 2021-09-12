@@ -142,7 +142,7 @@ html, body, main{
   margin-top: 30%;
 }
 
-@media screen and (max-width: 768px){
+/* @media screen and (max-width: 768px){
 
 .search{
   text-align: center;
@@ -165,4 +165,4 @@ justify-content: center;
   width: 85%;
 }
 
-}
+} */

@@ -1,4 +1,6 @@
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
     @if (app('env')=='production')
     <link rel="stylesheet" href="{{secure_asset('css/reset.css')}}">
     <link rel="stylesheet" href="{{secure_asset('css/header.css')}}">
@@ -17,15 +19,15 @@
             <a href="{{url('/')}}"><img class="home-btn" src="{{asset('img/house1.png')}}" alt=""></a>
             @if (Route::has('login'))
                 @auth
-                    <button class="mypage-btn" onclick="location.href='{{url('/mypage')}}'">マイページ</button>
+                    <button class="mypage-btn button is-small is-rounded" onclick="location.href='{{url('/mypage')}}'">マイページ</button>
                     <form action="{{route('logout')}}" method="POST">
                     @csrf
-                        <button class="logout-btn">ログアウト</button>
+                        <button class="logout-btn button is-small is-rounded">ログアウト</button>
                     </form>
             @else
-                    <button class="login-btn" onclick="location.href='{{url('/login')}}'">ログイン</button>
+                    <button class="login-btn button is-small is-rounded" onclick="location.href='{{url('/login')}}'">ログイン</button>
                 @if (Route::has('register'))
-                        <button class="register-btn" onclick="location.href='{{url('/register')}}'">会員登録</button>
+                        <button class="register-btn button is-small is-rounded" onclick="location.href='{{url('/register')}}'">会員登録</button>
                 @endif
                 @endauth
             @endif
