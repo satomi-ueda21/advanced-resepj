@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="{{asset('css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('css/register.css')}}">
 
   <title>Rese</title>
@@ -13,7 +12,7 @@
   <x-master>
       <main>
         @section('contents')
-        <div class="container">
+        <div class="container is-fluid">
           <div class="card">
             <p class="login-bar">Register</p>
             <form action="{{route('register')}}" method="POST" class="form-box">
@@ -36,7 +35,7 @@
               <div class="pass-box">
                 <input type="password" class="pass-bar" placeholder="Password" name="password">
               </div>
-              <button class="li-btn" type="submit">登録</button>
+              <button class="li-btn button is-info" type="submit">登録</button>
             </form>
           </div>
         </div>
