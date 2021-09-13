@@ -30,7 +30,7 @@ html, body, main{
 ----------------------------------------*/
 .reseve-info{
   margin: 50px 0;
-  width: 40%;
+  width: 50%;
 }
 
 .reseve-title{
@@ -66,23 +66,25 @@ html, body, main{
 
 .reseve-table{
   color: #fff;
+  width: 80%;
 }
 
 .reseve-table th{
-  padding-top: 20px;
+  padding: 4% 0;
   text-align: left;
+  color: #fff;
 }
 
 .reseve-table td{
   text-align: left;
-  padding-left: 30px;
+  padding: 4% 10%;
 }
 /* --------------------------------------
 　　　　　　お気に入り店舗
 ----------------------------------------*/
 .favorite {
   margin: 50px 0;
-  width: 40%;
+  width: 50%;
   flex-wrap: wrap;
 }
 
@@ -94,9 +96,7 @@ html, body, main{
 
 .card {
   background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px #ccc;
-  width: 40%;
+  width: 45%;
   margin-right: 4%;
   margin-bottom: 3%;
   display: inline-block; 
@@ -151,4 +151,34 @@ html, body, main{
 .heart{
   width: 50px;
   height: 50px;
+}
+
+/* --------------------------------------
+　　　　　　レスポンシブデザイン
+----------------------------------------*/
+@media screen and (max-width: 425px){
+
+  .reseve-info{
+    margin: 50px 0;
+    width: 90%;
+  }
+
+  .reseve-box{
+    width: 100%;
+  }
+
+  .reseve-table{
+    width: 100%;
+  }
+
+  .favorite {
+    margin: 50px 0;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .card{
+    width: 90%;
+  }
+
 }

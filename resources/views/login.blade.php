@@ -13,7 +13,7 @@
   <x-master>
       <main>
         @section('contents')
-        <div class="container">
+        <div class="container is-fluid">
           <div class="card">
             <p class="login-bar">Login</p>
             <form action="{{route('login')}}" method="POST" class="form-box">
@@ -45,7 +45,7 @@
               <div class="pass-box">
                 <input type="password" class="pass-bar" name="password" placeholder="Password">
               </div>
-              <button class="li-btn" type="submit" >ログイン</button>
+              <button class="li-btn button is-info" type="submit" >ログイン</button>
             </form>
           </div>
         </div>

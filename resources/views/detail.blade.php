@@ -21,7 +21,7 @@
             // dd($reserve);
         @endphp
         @section('contents')
-        <div class="container">
+        <div class="container is-fluid">
           <div class="detail">
             <div class="detail-box">
               <button type="button" class="detail-back" onclick="history.back()"><</button>

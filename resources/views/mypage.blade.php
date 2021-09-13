@@ -17,7 +17,7 @@
               // dd($store);
           @endphp
         @section('contents')
-        <div class="container">
+        <div class="container is-fluid">
           <div class="user-box">
             <h1 class="user-name">{{Auth::user()->name}}さん</h1>
           </div>
