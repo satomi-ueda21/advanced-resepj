@@ -18,13 +18,12 @@
   <x-master>
       <main>
         @php
-            // dd($reserve);
         @endphp
         @section('contents')
         <div class="container is-fluid">
           <div class="detail">
             <div class="detail-box">
-              <button type="button" class="detail-back" onclick="history.back()"><</button>
+              <button type="button " class="detail-back button is-small is-link is-outlined" onclick="history.back()"><</button>
               <h2 class="detail-title">{{$items->name}}</h2>
             </div>
             <div class="detail-info">
@@ -55,7 +54,14 @@
                   @endauth
                   <input type="hidden" name="store_id" value="{{ $items->id }}">
                   <input type="date" class="reseve-date" name="reseve_day" value="<?php echo date('Y-m-d');?>">
-                  <input type="time" placeholder="予約時間" class="reseve-time" name="reseve_time" step="3600" min="09:00" max="21:00">
+                  <input  placeholder="予約時間" list="time-data" class="reseve-time" name="reseve_time" step="3600" min="09:00" max="21:00">
+                    <datalist id="time-data">
+                      <option value="09:00"><option value="10:00"><option value="11:00">
+                      <option value="12:00"><option value="13:00"><option value="14:00">
+                      <option value="15:00"><option value="16:00"><option value="17:00">
+                      <option value="18:00"><option value="19:00"><option value="20:00">
+                      <option value="21:00">
+                    </datalist>
                   <input type="number" list="data1" class="reseve-num" name="people" min="1" max="5" placeholder="予約人数">
                     <datalist id="data1">
                       <option value="1">

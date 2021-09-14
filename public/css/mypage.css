@@ -36,13 +36,15 @@ html, body, main{
 .reseve-title{
   font-size: 24px;
   margin-bottom: 20px;
+  margin-left: 15%;
 }
 .reseve-box{
   background-color: #3560f6;
   border-radius: 5px;
-  width: 75%;
+  width: 60%;
   padding: 30px;
   margin-bottom: 3%;
+  margin-left: 15%;
 }
 
 .table-title{
@@ -96,7 +98,7 @@ html, body, main{
 
 .card {
   background: #fff;
-  width: 45%;
+  width: 40%;
   margin-right: 4%;
   margin-bottom: 3%;
   display: inline-block; 
@@ -156,15 +158,20 @@ html, body, main{
 /* --------------------------------------
 　　　　　　レスポンシブデザイン
 ----------------------------------------*/
-@media screen and (max-width: 425px){
+@media screen and (max-width: 768px){
 
   .reseve-info{
     margin: 50px 0;
     width: 90%;
   }
 
+  .reseve-title{
+    margin-left: 0;
+  }
+
   .reseve-box{
     width: 100%;
+    margin-left: 0;
   }
 
   .reseve-table{

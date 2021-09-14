@@ -34,7 +34,7 @@ class ReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            'reserve_day'=>'date|after:today',
+            'reserve_day'=>'date|after:now',
             'reserve_time'=>'date_format:H:i',
             'people'=>'integer|min:1|max:5',
             'reserve_date'=>['after:now',

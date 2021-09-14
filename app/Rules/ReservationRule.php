@@ -66,7 +66,6 @@ class ReservationRule implements Rule
      */
     public function message()
     {
-        // return '予約が埋まっております。他のお時間を指定してください。';
         return $this->error_message;
     }
 }

@@ -149,6 +149,14 @@ return [
     'attributes' => [
         'email'=>'メールアドレス',
         'password'=>'パスワード',
+        'reserve_date'=>'予約日時',
+        'people'=>'人数',
+    ],
+
+    'values' => [
+        'reserve_date' => [
+            'now' => '現在時刻',
+        ],
     ],
 
 ];
