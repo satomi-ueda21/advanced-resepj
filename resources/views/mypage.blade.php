@@ -9,6 +9,9 @@
   <title>Rese</title>
 </head>
 <body>
+  @php
+    dd($favorite);
+@endphp
   <x-master>
       <main>
         @section('contents')
@@ -97,7 +100,7 @@
                 <p class="card-text">＃{{$store[$loop->iteration]->area->name}} ＃{{$store[$loop->iteration]->genre->name}}</p>
               </div>
               <div class="card-link">
-                <button class="shop-detail" onclick="location.href='{{route('detail',$like->id)}}'">詳しくみる</button>
+                <button class="shop-detail" onclick="location.href='{{route('detail',$favorite->store_id)}}'">詳しくみる</button>
                 <div class="fav-button">
                     <a href="{{route('fav_off',$like->store_id)}}"><img src="{{asset('img/heart-pink.png')}}" alt="お気に入り削除" class="heart"></a>
                 </div>
