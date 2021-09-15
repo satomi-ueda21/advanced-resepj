@@ -31,11 +31,6 @@ html, body, main{
   margin: 0;
 }
 
-.search-area:first-child,
-.search-genre :first-child{
-  display: none;
-}
-
 .search-box{
   background: #ccddf5;
   border: none;

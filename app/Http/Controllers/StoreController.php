@@ -16,7 +16,7 @@ class StoreController extends Controller
 {
     public function index(Store $store,Request $request)
     {
-        //ホーム画面で表示するお店情報。検索したら結果を取得。
+        //ホーム画面で表示するお店情報取得。検索したら一致したお店のみ取得。
         $query = Store::query();
 
         $area = $request->input('area');
@@ -27,7 +27,7 @@ class StoreController extends Controller
             $query->where('area_id',$area);
         }
 
-        if(!empty($genre && $genre!=='All genre')){
+        if(!empty($genre) && $genre!=='All genre'){
             $query->where('genre_id',$genre);
         }
 
@@ -35,6 +35,14 @@ class StoreController extends Controller
             $query->where('name','like','%'.$keyword.'%');
         }
         $items = $query->get();
+
+        //今のセッションを消去して新しいセッションを保存
+        $request->session()->forget('search');
+        $request->session()->put('search',[
+            'area'=>$area,
+            'genre'=>$genre,
+            'keyword'=>$keyword
+        ]);
 
         //ログインユーザーのお気に入り表示機能
         $favorites[0] = 'dummy';

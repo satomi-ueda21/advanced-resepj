@@ -36,6 +36,9 @@ html, body, main{
   border-bottom: solid 3px #5e7fca;
 }
 
+/* --------------------------------------
+　　　　　　レスポンシブデザイン
+----------------------------------------*/
 @media screen and (max-width: 1024px){
   .card{
     width: 50%;

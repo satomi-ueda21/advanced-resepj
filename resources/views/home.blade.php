@@ -17,25 +17,28 @@
   @section('contents')
   @endsection
     <main>
+      @php
+          // dd(session('search')['area']);
+      @endphp
       <div class="contain">
         <div class="search">
             <form action="{{url('/')}}" method="get">
               @csrf
               <select name="area" class="search-area" >
                 <option>All area</option>
-                <option value="13">東京都</option>
-                <option value="27">大阪府</option>
-                <option value="40">福岡県</option>
+                <option value="13" <?php if ( session('search')['area'] == 13 ) { echo ( 'selected' ); } ?>>東京都</option>
+                <option value="27" <?php if ( session('search')['area'] == 27 ) { echo ( 'selected' ); } ?>>大阪府</option>
+                <option value="40" <?php if ( session('search')['area'] == 40 ) { echo ( 'selected' ); } ?>>福岡県</option>
               </select><!----
           -----><select name="genre" class="search-genre" >
-                <option>All genre</option>
-                <option value="1">寿司</option>
-                <option value="2">焼肉</option>
-                <option value="3">居酒屋</option>
-                <option value="4">イタリアン</option>
-                <option value="5">ラーメン</option>
-              </select><!----
-        -----><input type="search" class="search-box" name="keyword" value=""><!---
+                  <option>All genre</option>
+                  <option value="1" <?php if ( session('search')['genre'] == 1 ) { echo ( 'selected' ); } ?>>寿司</option>
+                  <option value="2" <?php if ( session('search')['genre'] == 2 ) { echo ( 'selected' ); } ?>>焼肉</option>
+                  <option value="3" <?php if ( session('search')['genre'] == 3 ) { echo ( 'selected' ); } ?>>居酒屋</option>
+                  <option value="4" <?php if ( session('search')['genre'] == 4 ) { echo ( 'selected' ); } ?>>イタリアン</option>
+                  <option value="5" <?php if ( session('search')['genre'] == 5 ) { echo ( 'selected' ); } ?>>ラーメン</option>
+                </select><!----
+        -----><input type="search" class="search-box" name="keyword" value="<?php if ( ! empty( session('search')['keyword'] ) ) { echo ( session('search')['keyword']  ); } ?>"><!---
           ---><input type="submit" class="submit-btn" value="&#xf002">
             </form>
         </div>
