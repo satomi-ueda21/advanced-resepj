@@ -16,7 +16,7 @@ class StoreController extends Controller
 {
     public function index(Store $store,Request $request)
     {
-        //ストア情報と検索結果表示用
+        //ホーム画面で表示するお店情報。検索したら結果を取得。
         $query = Store::query();
 
         $area = $request->input('area');
@@ -36,7 +36,7 @@ class StoreController extends Controller
         }
         $items = $query->get();
 
-        //お気に入り
+        //ログインユーザーのお気に入り表示機能
         $favorites[0] = 'dummy';
         $fav_counts[0] = 'dummy';
         $user = Auth::id();
@@ -53,7 +53,7 @@ class StoreController extends Controller
             }
             array_push($favorites,$fav);
 
-            //お気に入り数カウント
+            //全ユーザーのお気に入り数カウント
             $fav_count = 0;
             $fav_count = Favorite::where('store_id',$item['id'])->count();
             $fav_counts[] = $fav_count;

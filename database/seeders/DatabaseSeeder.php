@@ -17,5 +17,9 @@ class DatabaseSeeder extends Seeder
         $path = 'database/sql/rese_db.sql';
         DB::unprepared(file_get_contents($path));
 
+        //Herokuデプロイ時のシーディング用
+        // $path = 'database/sql/rese_db_heroku.sql';
+        // DB::unprepared(file_get_contents($path));
+
     }
 }

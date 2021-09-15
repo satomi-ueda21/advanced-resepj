@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="{{asset('css/reset.css')}}">
   <link rel="stylesheet" href="{{asset('css/mypage.css')}}">
 
   <title>Rese</title>
@@ -12,10 +11,6 @@
 <body>
   <x-master>
       <main>
-          @php
-              // dd($reserve_new);
-              // dd($store);
-          @endphp
         @section('contents')
         <div class="container is-fluid">
           <div class="user-box">

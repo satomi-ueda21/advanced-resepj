@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class FavoriteController extends Controller
 {
     //お気に入りに追加
-    public function fav_on($id,Store $store)
+    public function fav_on($id)
     {
         $fav = New Favorite();
         $fav->store_id = $id;
@@ -20,7 +20,7 @@ class FavoriteController extends Controller
     }
 
     //お気に入りを削除
-    public function fav_off($id,Store $store)
+    public function fav_off($id)
     {
         $user=Auth::id();
         $fav=Favorite::where('store_id',$id)->where('user_id',$user)->first();

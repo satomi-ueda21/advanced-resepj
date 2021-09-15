@@ -46,13 +46,12 @@ Route::group(['middleware'=>['auth']],function(){
     Route::post('/detail/{id}', [DetailController::class, 'reservation'])->name('reservation');
     //お店の予約キャンセル
     Route::delete('mypage',[MypageController::class,'reserve_delete'])->name('reserve_delete');
+    //予約完了ページ
+    Route::get('/done', function () {
+        return view('done');})->name('done');
 });
 
 //ホームページ
 Route::get('/', [StoreController::class, 'index'])->name('home');
 //お店の詳細ページ
 Route::get('/detail/{id}', [DetailController::class, 'index'])->name('detail');
-
-Route::get('/done', function () {
-    return view('done');
-})->name('done');

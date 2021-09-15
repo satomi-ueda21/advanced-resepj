@@ -33,6 +33,7 @@ class ReservationRequest extends FormRequest
      */
     public function rules()
     {
+        //予約情報バリデーション。reserve_dateのみReservationRuleでオリジナルバリデーション。
         return [
             'reserve_day'=>'date|after:now',
             'reserve_time'=>'date_format:H:i',

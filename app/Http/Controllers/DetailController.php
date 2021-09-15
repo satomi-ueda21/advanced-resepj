@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DetailController extends Controller
 {
+    //お店の詳細情報とID、ログイン済みユーザーの予約情報があれば詳細ページに送る。
     public function index($id)
     {
         $items = Store::find($id);
@@ -25,6 +26,7 @@ class DetailController extends Controller
 
     public function reservation(ReservationRequest $request)
     {
+        //ReservationRequestでバリデーションした予約情報を登録。予約完了ページを表示。
         Reservation::create([
             'store_id'=>$request->store_id,
             'user_id'=>$request->user_id,

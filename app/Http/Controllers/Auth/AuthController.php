@@ -11,12 +11,14 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    //ユーザーモデルでの処理
     public function __construct(User $user)
     {
         $this->user=$user;
     }
 
     /**
+     * 会員登録ページ表示
      *  @return View
      */
     public function showregister()
@@ -25,6 +27,7 @@ class AuthController extends Controller
     }
 
     /**
+     * 会員登録完了ページ表示
      *  @return View
      */
     public function thanks()
@@ -38,6 +41,7 @@ class AuthController extends Controller
      */
     public function register(RegisterFormRequest $request)
     {
+        //RegisterFormRequestでバリデーション後に保存
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -50,6 +54,7 @@ class AuthController extends Controller
     }
 
     /**
+     * ログイン画面を表示
      *  @return View
      */
     public function showlogin()

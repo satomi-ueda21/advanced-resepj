@@ -61,7 +61,7 @@ class ReservationRule implements Rule
 
     /**
      * Get the validation error message.
-     *
+     *エラーメッセージ表示。
      * @return string
      */
     public function message()

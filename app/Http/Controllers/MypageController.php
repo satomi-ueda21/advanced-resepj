@@ -16,7 +16,7 @@ class MypageController extends Controller
     */
     public function index()
     {
-        //予約情報取得
+        //現在の予約と終わった予約情報を取得
         $id = Auth::id();
         $carbon = Carbon::today();
         $reserve_new = [];
@@ -46,6 +46,7 @@ class MypageController extends Controller
 
     public function reserve_delete(Request $request)
     {
+        //予約情報を論理削除
         $id = Auth::id();
         $reserve_id = $request->input('id');
 

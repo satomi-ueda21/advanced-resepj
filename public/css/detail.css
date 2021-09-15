@@ -26,9 +26,6 @@ html, body, main{
 
 .detail-back{
   background: #fff;
-  border:none;
-  border-radius: 5px;
-  font-size: 20px;
 }
 
 .detail-title{
@@ -59,7 +56,7 @@ html, body, main{
 　　　　　　店舗予約
 ----------------------------------------*/
 .reseve-info{
-  margin: 50px 0;
+  margin: 8% 0;
   width: 50%;
 }
 
@@ -72,9 +69,8 @@ html, body, main{
   background-color: #3560f6;
   border-radius: 5px 5px 0 0;
   width: 75%;
-  height: 100%;
+  height: auto;
   padding: 6%;
-  position: relative;
 }
 
 .reseve-date,
@@ -116,13 +112,13 @@ html, body, main{
 .reseve-but{
   background-color: #1949f8;
   border-radius: 10px;
-  width: 75%;
+  width: 90%;
   text-align: center;
   line-height: 50px;
   color: #fff;
   font-size: 16px;
-  position: absolute;
-  bottom: 3%;
+  margin-top: 8%;
+
 }
 
 .reseve-buta{
@@ -163,23 +159,23 @@ html, body, main{
     height: auto;
   }
 
-  .reseve-but{
+  /* .reseve-but{
     position: static;
-  }
+  } */
 
   .reseve-table{
     width: 100%;
   }
 
-.reseve-but{
-  width: 100%;
-}
+  .reseve-but{
+    width: 100%;
+  }
 
 }
 
-@media screen and (max-width: 1440px){
+@media screen and (min-width:768px) and (max-width: 1440px){
 
-    .reseve-but{
+  .reseve-but{
     position: static;
     width: 90%;
   }

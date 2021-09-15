@@ -133,6 +133,10 @@ html, body, main{
   margin-top: 30%;
 }
 
+/* --------------------------------------
+　　　　　　レスポンシブデザイン
+----------------------------------------*/
+
 @media screen and (max-width: 480px){
 
 .search{
@@ -141,7 +145,7 @@ html, body, main{
 
 .search-area,
 .search-genre{
-  width: 41%;
+  width: 42%;
 }
 
 .search-box{
